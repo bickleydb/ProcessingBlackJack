@@ -7,6 +7,7 @@ public class BlackjackGame extends JFrame {
 
   private Deck deck;
   private Hand hand;
+  private Hand dealerHand;
 
   public BlackjackGame() {
     super("Welcome to Blackjack!");
@@ -14,11 +15,14 @@ public class BlackjackGame extends JFrame {
 
     deck = new Deck();
     hand = new Hand();
+    dealerHand = new Hand();
 
 
     deck.shuffle();
-    hand.addCard(new Card(Card.ACE, Card.SPADES));
-    hand.addCard(new Card(10, Card.CLUBS));
+    hand.addCard(this.deck.deal());
+    dealerHand.addCard(this.deck.deal());
+    hand.addCard(this.deck.deal());
+    dealerHand.addCard(this.deck.deal());
     updateScore();
   }
 
@@ -35,6 +39,10 @@ public class BlackjackGame extends JFrame {
   
   public ArrayList<Card> getHand() {
     return this.hand.getHand();
+  }
+  
+  public ArrayList<Card> getDealerHand() {
+    return this.dealerHand.getHand();
   }
   
   public void dealOrNoDeal() {
